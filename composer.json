@@ -1,6 +1,6 @@
 {
   "name": "blakit/yii2-admin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Admin starter Yii2 projects",
   "type": "library",
   "license": "Open Source",
@@ -18,7 +18,7 @@
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "blakit\\": "src/"
+      "blakit\\admin\\": "src/"
     }
   }
 }
