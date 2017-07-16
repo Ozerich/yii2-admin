@@ -1,0 +1,16 @@
+.content-header {
+    overflow: hidden;
+}
+
+.content-header h1 {
+    float: left;
+}
+
+.content-header .page-buttons {
+    float: right;
+}
+
+.grid-view img {
+    max-height: 150px;
+    max-width: 150px;
+}
