@@ -8,7 +8,7 @@ use yii\web\Response;
 
 class Module extends \yii\base\Module
 {
-    public $layoutPath = '@vendor/blakit/yii2-tools/src/admin/views/layouts';
+    public $layoutPath = '@vendor/blakit/yii2-admin/src/views/layouts';
 
     public $menu = [];
 

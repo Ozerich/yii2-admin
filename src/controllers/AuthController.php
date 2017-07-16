@@ -15,7 +15,7 @@ class AuthController extends Controller
 
     public function actionIndex()
     {
-        $this->setViewPath('@vendor/blakit/yii2-tools/src/admin/views/auth');
+        $this->setViewPath('@vendor/blakit/yii2-admin/src/views/auth');
 
         $form = new LoginForm();
 
