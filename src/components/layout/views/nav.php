@@ -8,7 +8,7 @@
                 <ul class="treeview-menu">
                     <? foreach ($menu_item['submenu'] as $submenu_item): ?>
                         <li>
-                            <a href="/admin<?= $submenu_item['link'] ?>"><i class="fa fa-<?= ($menu_item['icon'] ?? 'angle-right') ?>"></i><?= $submenu_item['label'] ?></a>
+                            <a href="/admin<?= $submenu_item['link'] ?>"><i class="fa fa-<?= ($submenu_item['icon'] ?? 'angle-right') ?>"></i><?= $submenu_item['label'] ?></a>
                         </li>
                     <? endforeach; ?>
                 </ul>
