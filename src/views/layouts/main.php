@@ -15,15 +15,15 @@ $user = Yii::$app->user->getIdentity();
     <head>
         <meta charset="<?php echo Yii::$app->charset ?>"/>
         <?php echo Html::csrfMetaTags() ?>
-        <title><?php echo Html::encode($this->title) ?></title>
+        <title><?= Html::encode(Yii::$app->name . ($this->title ? ' - ' . ($this->title[0]=='#' ? substr($this->title, 1) : $this->title) : '')) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="<?= \dmstr\helpers\AdminLteHelper::skinClass() ?>">
+    <body class="<?= \dmstr\helpers\AdminLteHelper::skinClass() . ' sidebar-mini' . (Yii::$app->request->cookies->getValue('sidebar')==='collapse' ? ' sidebar-collapse' : '') ?>">
     <div class="wrapper">
         <header class="main-header">
             <a href="/admin" class="logo" target="_blank"><?= Yii::$app->name ?></a>
             <nav class="navbar navbar-static-top">
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" onclick="toggleSidebar()">
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
@@ -44,9 +44,6 @@ $user = Yii::$app->user->getIdentity();
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -58,9 +55,14 @@ $user = Yii::$app->user->getIdentity();
         </aside>
         <div class="content-wrapper">
             <section class="content-header">
-                <h1>
-                    <? echo $this->title ?>
-                </h1>
+                <?php if ($notice = Yii::$app->session->getFlash('notice_text')): ?>
+                    <div class="callout callout-<?= (($noticeClass = Yii::$app->session->getFlash('notice_level')) ? $noticeClass : 'default') ?>">
+                        <?= $notice ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($this->title[0] != '#'): ?>
+                    <h1><?= $this->title ?></h1>
+                <?php endif; ?>
                 <div class="page-buttons">
                     <? if (isset($this->params['buttons'])): ?>
                         <? foreach ($this->params['buttons'] as $button): ?>
