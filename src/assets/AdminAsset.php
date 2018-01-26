@@ -13,6 +13,10 @@ class AdminAsset extends AssetBundle
         'css/admin.css',
     ];
 
+    public $js = [
+        'js/admin.js',
+    ];
+
     public $jsOptions = [
         'position' => View::POS_HEAD,
     ];
