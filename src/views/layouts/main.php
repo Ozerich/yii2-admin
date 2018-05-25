@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
@@ -7,28 +8,44 @@ use yii\helpers\Html;
 
 /** @var \blakit\admin\interfaces\IAdminUser $user */
 $user = Yii::$app->user->getIdentity();
+
+/** @var \blakit\admin\Module $module */
+$module = $this->context->module;
+
+$body_classes = [\dmstr\helpers\AdminLteHelper::skinClass(), 'sidebar-mini'];
+if ($module->isBoxedLayout) {
+    $body_classes[] = 'layout-boxed';
+}
+if (Yii::$app->request->cookies->getValue('sidebar') === 'collapse') {
+    $body_classes[] = 'sidebar-collapsed';
+}
 ?>
 
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?php echo Yii::$app->language ?>">
     <head>
-        <meta charset="<?php echo Yii::$app->charset ?>"/>
+        <meta charset="<?php echo Yii::$app->charset ?>" />
         <?php echo Html::csrfMetaTags() ?>
-        <title><?= Html::encode(Yii::$app->name . ($this->title ? ' - ' . ($this->title[0]=='#' ? substr($this->title, 1) : $this->title) : '')) ?></title>
+        <title><?= Html::encode(Yii::$app->name . ($this->title ? ' - ' . ($this->title[0] == '#' ? substr($this->title, 1) : $this->title) : '')) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="<?= \dmstr\helpers\AdminLteHelper::skinClass() . ' sidebar-mini' . (Yii::$app->request->cookies->getValue('sidebar')==='collapse' ? ' sidebar-collapse' : '') ?>">
+    <body class="<?= implode(' ', $body_classes) ?>">
     <div class="wrapper">
         <header class="main-header">
-            <a href="/admin" class="logo" target="_blank"><?= Yii::$app->name ?></a>
+
+            <a href="/admin" class="logo">
+                <span class="logo-mini"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->shortName) ?></span>
+                <span class="logo-lg"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->fullName) ?></span>
+            </a>
+
             <nav class="navbar navbar-static-top">
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" onclick="toggleSidebar()">
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" cьlass="dropdown-toggle" data-toggle="dropdown">
                                 <span class="hidden-xs"><?= $user->getDashboardName() ?></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -48,11 +65,13 @@ $user = Yii::$app->user->getIdentity();
                 </div>
             </nav>
         </header>
+
         <aside class="main-sidebar">
-            <section class="sidebar">
+            <section class="sidebar">)
                 <? echo \blakit\admin\components\layout\SidebarNav::widget(); ?>
             </section>
         </aside>
+
         <div class="content-wrapper">
             <section class="content-header">
                 <?php if ($notice = Yii::$app->session->getFlash('notice_text')): ?>

@@ -1,4 +1,5 @@
 <?php
+
 use yii\widgets\ActiveForm;
 
 ?>
@@ -40,7 +41,8 @@ use yii\widgets\ActiveForm;
 
         <div class="row">
             <div class="col-xs-12">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">Войти</button>
+                <button type="submit"
+                        class="btn btn-primary btn-block btn-flat"><?= Yii::$app->language == 'ru' ? 'Войти' : 'Login' ?></button>
             </div>
         </div>
 

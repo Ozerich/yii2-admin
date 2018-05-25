@@ -8,6 +8,12 @@ use yii\web\Response;
 
 class Module extends \yii\base\Module
 {
+    public $isBoxedLayout = true;
+
+    public $shortName = 'B*IT*';
+
+    public $fullName = 'BLAK*IT*';
+
     public $layoutPath = '@vendor/blakit/yii2-admin/src/views/layouts';
 
     public $menu = [];

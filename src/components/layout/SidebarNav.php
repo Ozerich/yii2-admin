@@ -22,6 +22,28 @@ class SidebarNav extends \yii\base\Widget
             }
         }
 
+        $menu = array_filter($menu, function ($item) {
+            if (isset($item['allow_for'])) {
+                if (!in_array(\Yii::$app->user->getIdentity()->role, $item['allow_for'])) {
+                    return false;
+                }
+            }
+            return true;
+        });
+
+        foreach ($menu as &$menu_item) {
+            if (isset($menu_item['submenu'])) {
+                $menu_item['submenu'] = array_filter($menu_item['submenu'], function ($item) {
+                    if (isset($item['allow_for'])) {
+                        if (!in_array(\Yii::$app->user->getIdentity()->role, $item['allow_for'])) {
+                            return false;
+                        }
+                    }
+                    return true;
+                });
+            }
+        }
+
         return $this->render('nav', [
             'menu' => $menu,
             'activeMenu' => $activeMenu
