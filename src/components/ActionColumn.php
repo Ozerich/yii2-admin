@@ -40,7 +40,7 @@ class ActionColumn extends \yii\grid\ActionColumn
         if (!isset($this->buttons['delete'])) {
             $this->buttons['delete'] = function ($url, $model) {
                 return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
-                    'title' => 'Удалить',
+                    'title' => 'Delete',
                     'data-confirm' => 'Are you sure?',
                     'data-method' => 'post',
                     'data-pjax' => '0',
