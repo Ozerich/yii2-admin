@@ -45,7 +45,7 @@ if (Yii::$app->request->cookies->getValue('sidebar') === 'collapse') {
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li class="dropdown user user-menu">
-                            <a href="#" cьlass="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="hidden-xs"><?= $user->getDashboardName() ?></span>
                             </a>
                             <ul class="dropdown-menu">
