@@ -12,10 +12,19 @@ class SidebarNav extends \yii\base\Widget
 
         foreach ($menu as $root_menu => $item) {
             if (isset($item['submenu'])) {
+
+                $request_url = \Yii::$app->request->url;
+                if (stripos($request_url, 'index') !== false) {
+                    $request_url = str_replace('index', '', $request_url);
+                    $request_url = explode('&page=', $request_url);
+                } else {
+                    $request_url = explode('?page=', $request_url);
+                }
+
                 foreach ($item['submenu'] as $subitem) {
                     $link = '/admin' . $subitem['link'];
 
-                    if (\Yii::$app->request->url == $link) {
+                    if ($request_url[0]  == $link) {
                         $activeMenu = $item['id'];
                     }
                 }
