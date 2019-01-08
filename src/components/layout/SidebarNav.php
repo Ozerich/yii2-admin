@@ -20,7 +20,6 @@ class SidebarNav extends \yii\base\Widget
 
         foreach ($menu as $root_menu => $item) {
             if (isset($item['submenu'])) {
-
                 foreach ($item['submenu'] as $subitem) {
                     $link = '/admin' . $subitem['link'];
 
