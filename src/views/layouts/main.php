@@ -82,6 +82,17 @@ if (Yii::$app->request->cookies->getValue('sidebar') === 'collapse') {
                 <?php if ($this->title[0] != '#'): ?>
                     <h1><?= $this->title ?></h1>
                 <?php endif; ?>
+
+                <? if (isset($this->params['breadcrumbs']) && !empty($this->params['breadcrumbs'])): ?>
+                    <ol class="breadcrumb">
+                        <? foreach ($this->params['breadcrumbs'] as $breadcrumb): ?>
+                            <li><a href="/admin<?= $breadcrumb['link'] ?>"><?= $breadcrumb['label'] ?></a></li>
+                        <? endforeach; ?>
+
+                        <li class="active"><?= $this->title ?></li>
+                    </ol>
+                <? endif; ?>
+
                 <div class="page-buttons">
                     <? if (isset($this->params['buttons'])): ?>
                         <? foreach ($this->params['buttons'] as $button): ?>
