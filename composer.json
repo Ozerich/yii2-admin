@@ -1,13 +1,20 @@
 {
   "name": "ozerich/yii2-admin",
-  "description": "Admin starter Yii2 projects",
-  "type": "library",
-  "license": "proprietary",
+  "description": "Extension for creating admin panels",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension",
+    "admin",
+    "control-panel"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Ozerich/yii2-filestorage-db",
   "authors": [
     {
-      "name": "Vital Ozierski",
-      "homepage": "https://ozerich.me",
+      "name": "Vital Ozierski aka ozerich",
       "email": "vital@ozerich.com",
+      "homepage": "https://ozerich.me",
       "role": "Developer"
     }
   ],
