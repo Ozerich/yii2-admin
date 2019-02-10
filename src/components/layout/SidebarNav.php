@@ -1,6 +1,6 @@
 <?php
 
-namespace blakit\admin\components\layout;
+namespace ozerich\admin\components\layout;
 
 class SidebarNav extends \yii\base\Widget
 {

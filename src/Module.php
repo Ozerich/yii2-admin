@@ -1,7 +1,8 @@
 <?php
 
-namespace blakit\admin;
+namespace ozerich\admin;
 
+use ozerich\filestorage\FileStorage;
 use yii\web\AssetManager;
 use yii\web\ErrorHandler;
 use yii\web\Response;
@@ -14,15 +15,17 @@ class Module extends \yii\base\Module
 
     public $fullName = 'BLAK*IT*';
 
-    public $layoutPath = '@vendor/blakit/yii2-admin/src/views/layouts';
+    public $layoutPath = '@vendor/ozerich/yii2-admin/src/views/layouts';
 
     public $menu = [];
 
     public $userIdentityClass = 'app\models\User';
 
     public $controllerMap = [
-        'auth' => 'blakit\admin\controllers\AuthController',
+        'auth' => 'ozerich\admin\controllers\AuthController',
     ];
+
+    public $fileStorageComponent = 'media';
 
     public function init()
     {
@@ -58,5 +61,17 @@ class Module extends \yii\base\Module
         }
 
         \Yii::$app->setComponents($components);
+    }
+
+    /**
+     * @return FileStorage|null
+     */
+    public function getFileStorage()
+    {
+        if ($this->fileStorageComponent) {
+            return \Yii::$app->{$this->fileStorageComponent};
+        } else {
+            return null;
+        }
     }
 }

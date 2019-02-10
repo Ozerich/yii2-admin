@@ -4,12 +4,12 @@ use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
-\blakit\admin\assets\AdminAsset::register($this);
+\ozerich\admin\assets\AdminAsset::register($this);
 
-/** @var \blakit\admin\interfaces\IAdminUser $user */
+/** @var \ozerich\admin\interfaces\IAdminUser $user */
 $user = Yii::$app->user->getIdentity();
 
-/** @var \blakit\admin\Module $module */
+/** @var \ozerich\admin\Module $module */
 $module = $this->context->module;
 
 $body_classes = [\dmstr\helpers\AdminLteHelper::skinClass(), 'sidebar-mini'];
@@ -68,7 +68,7 @@ if (Yii::$app->request->cookies->getValue('sidebar') === 'collapse') {
 
         <aside class="main-sidebar">
             <section class="sidebar">)
-                <? echo \blakit\admin\components\layout\SidebarNav::widget(); ?>
+                <? echo \ozerich\admin\components\layout\SidebarNav::widget(); ?>
             </section>
         </aside>
 

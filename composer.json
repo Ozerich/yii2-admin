@@ -1,23 +1,27 @@
 {
-  "name": "blakit/yii2-admin",
+  "name": "ozerich/yii2-admin",
   "description": "Admin starter Yii2 projects",
   "type": "library",
   "license": "proprietary",
   "authors": [
     {
       "name": "Vital Ozierski",
-      "email": "v.ozierski@blak-it.com"
+      "homepage": "https://ozerich.me",
+      "email": "vital@ozerich.com",
+      "role": "Developer"
     }
   ],
   "require": {
-    "php": ">=5.6.0",
+    "php": ">=7.0.0",
     "yiisoft/yii2": "^2.0",
+    "ozerich/yii2-filestorage-db": "^1.0",
+    "2amigos/yii2-tinymce-widget": "~1.1",
     "dmstr/yii2-adminlte-asset": "2.*"
   },
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "blakit\\admin\\": "src/"
+      "ozerich\\admin\\": "src/"
     }
   }
 }

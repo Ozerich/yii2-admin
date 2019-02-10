@@ -1,9 +1,9 @@
 <?php
 
-namespace blakit\admin\forms;
+namespace ozerich\admin\forms;
 
-use blakit\admin\interfaces\IAdminUser;
-use blakit\admin\Module;
+use ozerich\admin\interfaces\IAdminUser;
+use ozerich\admin\Module;
 use yii\base\Model;
 
 class LoginForm extends Model

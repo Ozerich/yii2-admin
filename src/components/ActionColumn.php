@@ -1,6 +1,6 @@
 <?php
 
-namespace blakit\admin\components;
+namespace ozerich\admin\components;
 
 use \Yii;
 use yii\helpers\Html;

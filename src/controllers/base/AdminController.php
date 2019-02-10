@@ -1,6 +1,6 @@
 <?php
 
-namespace blakit\admin\controllers\base;
+namespace ozerich\admin\controllers\base;
 
 use yii\web\Controller;
 use yii\filters\AccessControl;

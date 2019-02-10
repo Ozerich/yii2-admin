@@ -1,6 +1,6 @@
 <?php
 
-namespace blakit\admin\interfaces;
+namespace ozerich\admin\interfaces;
 
 interface IAdminUser
 {

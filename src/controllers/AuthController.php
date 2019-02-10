@@ -1,10 +1,10 @@
 <?php
 
-namespace blakit\admin\controllers;
+namespace ozerich\admin\controllers;
 
-use blakit\admin\forms\LoginForm;
-use blakit\admin\interfaces\IAdminUser;
-use blakit\admin\Module;
+use ozerich\admin\forms\LoginForm;
+use ozerich\admin\interfaces\IAdminUser;
+use ozerich\admin\Module;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -15,7 +15,7 @@ class AuthController extends Controller
 
     public function actionIndex()
     {
-        $this->setViewPath('@vendor/blakit/yii2-admin/src/views/auth');
+        $this->setViewPath('@vendor/ozerich/yii2-admin/src/views/auth');
 
         $form = new LoginForm();
 
