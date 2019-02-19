@@ -2,7 +2,7 @@
 
 namespace ozerich\admin\components;
 
-use \Yii;
+use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -14,7 +14,9 @@ class ActionColumn extends \yii\grid\ActionColumn
 
     public $actions = [];
 
-    public $buttons_visible = [];
+    public $buttonsVisible = [];
+
+    public $headerOptions = ['style' => 'min-width: 80px;'];
 
     protected function initDefaultButtons()
     {
@@ -48,6 +50,26 @@ class ActionColumn extends \yii\grid\ActionColumn
                 ]);
             };
         }
+
+        if (!isset($this->buttons['up'])) {
+            $this->buttons['up'] = function ($url, $model) {
+                return Html::a('<span class="glyphicon glyphicon-arrow-up"></span>', $url, [
+                    'title' => 'Move up',
+                    'data-pjax' => '0',
+                    'target' => strpos($url, 'http://') !== false ? '_blank' : ''
+                ]);
+            };
+        }
+
+        if (!isset($this->buttons['down'])) {
+            $this->buttons['down'] = function ($url, $model) {
+                return Html::a('<span class="glyphicon glyphicon-arrow-down"></span>', $url, [
+                    'title' => 'Move down',
+                    'data-pjax' => '0',
+                    'target' => strpos($url, 'http://') ? '_blank' : ''
+                ]);
+            };
+        }
     }
 
     public function createUrl($action, $model, $key, $index)
@@ -63,7 +85,7 @@ class ActionColumn extends \yii\grid\ActionColumn
 
                 if (isset($this->actions[$action])) {
                     $action = call_user_func($this->actions[$action], $model);
-                    if(strpos($action, 'http://') !== false){
+                    if (strpos($action, 'http://') !== false) {
                         return $action;
                     }
                 } else if (!empty($this->action_prefix)) {
@@ -82,8 +104,8 @@ class ActionColumn extends \yii\grid\ActionColumn
             $name = $matches[1];
             if (isset($this->buttons[$name])) {
 
-                if (isset($this->buttons_visible[$name])) {
-                    if (!call_user_func($this->buttons_visible[$name], $model)) {
+                if (isset($this->buttonsVisible[$name])) {
+                    if (!call_user_func($this->buttonsVisible[$name], $model)) {
                         return '';
                     }
                 }

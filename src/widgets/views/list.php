@@ -58,7 +58,7 @@
 
         $gridColumns = array_merge($columns, [
             [
-                'class' => \app\modules\admin\components\ActionColumn::class,
+                'class' => \ozerich\admin\components\ActionColumn::class,
                 'template' => implode('', array_map(function ($item) {
                     return '{' . $item . '}';
                 }, $templateActions)),
@@ -89,9 +89,6 @@
     <div class="box-body">
         <?= \yii\grid\GridView::widget([
             'dataProvider' => $dataProvider,
-            'formatter' => [
-                'class' => \app\modules\admin\components\Formatter::class
-            ],
             'layout' => '{items}{pager}',
             'columns' => $gridColumns
         ]); ?>
