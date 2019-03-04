@@ -96,7 +96,12 @@ class CreateOrUpdateAction extends Action
 
                     if ($file) {
                         $file_model = $filestorage->createFileFromUploadedFile($file, $scenario);
-                        $formModel->{$attribute} = $file_model ? $file_model->id : null;
+                        if (!$file_model) {
+                            $errors = $filestorage->getLastErrors();
+                            $formModel->addError($attribute, $errors ? array_shift($errors) : 'Ошибка загрузки файла');
+                        } else {
+                            $formModel->{$attribute} = $file_model->id;
+                        }
                     } else {
                         if (!isset($_POST[$formModel->formName()][$attribute])) {
                             $formModel->{$attribute} = null;
@@ -105,17 +110,20 @@ class CreateOrUpdateAction extends Action
                 }
             }
 
-            if ($this->formClass) {
-                $convertor = new $this->formConvertor;
+            if ($formModel->hasErrors() == false) {
 
-                $success = $this->modelClass ? $convertor->saveModelFromForm($model, $formModel) : $convertor->saveModelFromForm($formModel);
+                if ($this->formClass) {
+                    $convertor = new $this->formConvertor;
 
-                if ($success) {
-                    return $this->controller->redirect($this->getRedirectUrl($model));
-                }
-            } else {
-                if ($formModel->save()) {
-                    return $this->controller->redirect($this->getRedirectUrl($model));
+                    $success = $this->modelClass ? $convertor->saveModelFromForm($model, $formModel) : $convertor->saveModelFromForm($formModel);
+
+                    if ($success) {
+                        return $this->controller->redirect($this->getRedirectUrl($model));
+                    }
+                } else {
+                    if ($formModel->save()) {
+                        return $this->controller->redirect($this->getRedirectUrl($model));
+                    }
                 }
             }
         }
