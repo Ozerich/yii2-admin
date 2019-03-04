@@ -39,7 +39,9 @@ class CreateOrUpdateAction extends Action
         if ($this->isCreate) {
             $model = \Yii::createObject($this->modelClass);
 
-            foreach ($this->defaultParams as $param => $value) {
+            $defaultParams = is_callable($this->defaultParams) ? call_user_func($this->defaultParams, $params) : $this->defaultParams;
+
+            foreach ($defaultParams as $param => $value) {
                 $model->{$param} = $value;
             }
 
@@ -128,10 +130,19 @@ class CreateOrUpdateAction extends Action
             }
         }
 
-        return $this->controller->render($this->view, [
+        $viewParams = [
             'isCreate' => $this->isCreate,
             'model' => $model,
             'formModel' => $formModel
-        ]);
+        ];
+
+        if (!empty($this->viewParams)) {
+            if (is_array($this->viewParams)) {
+                $viewParams = array_merge($viewParams, $this->viewParams);
+            } else if (is_callable($this->viewParams)) {
+                $viewParams = array_merge($viewParams, call_user_func_array($this->viewParams, [$params]));
+            }
+        }
+        return $this->controller->render($this->view, $viewParams);
     }
 }
