@@ -18,6 +18,8 @@ class CreateOrUpdateAction extends Action
 
     public $view;
 
+    public $viewParams = [];
+
     public $redirectUrl;
 
     public $isCreate;
