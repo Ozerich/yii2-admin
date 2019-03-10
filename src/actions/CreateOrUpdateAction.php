@@ -94,6 +94,7 @@ class CreateOrUpdateAction extends Action
 
         if ($formModel->load(\Yii::$app->request->post()) || \Yii::$app->request->isPost) {
 
+
             if ($filestorage) {
                 foreach ($this->files as $attribute => $scenario) {
                     $file = UploadedFile::getInstance($formModel, $attribute);
@@ -113,6 +114,8 @@ class CreateOrUpdateAction extends Action
                     }
                 }
             }
+
+            $formModel->validate(null, false);
 
             if ($formModel->hasErrors() == false) {
 
