@@ -11,6 +11,8 @@ class AdminController extends Controller
 
     public $active_left_menu = '';
 
+    public $enableCsrfValidation = false;
+
     public function behaviors()
     {
         return [

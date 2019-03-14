@@ -22,6 +22,8 @@ class ListAction extends Action
 
     public $breadcrumbs;
 
+    public $filterModel;
+
     private function getDataProviderParams($base = [])
     {
         $params = array_merge($this->dataProviderParams, $base);
@@ -33,6 +35,10 @@ class ListAction extends Action
 
     public function runWithParams($params)
     {
+        if ($this->filterModel) {
+            $this->filterModel->load(\Yii::$app->request->get());
+        }
+
         if ($this->breadcrumbs) {
             if (is_callable($this->breadcrumbs)) {
                 $this->breadcrumbs = call_user_func($this->breadcrumbs, $params);
@@ -49,7 +55,7 @@ class ListAction extends Action
             }
 
             $dataProvider = new ActiveDataProvider($this->getDataProviderParams([
-                'query' => $this->query
+                'query' => $this->filterModel ? $this->filterModel->search($this->query) : $this->query
             ]));
         } else {
             $dataProvider = new ArrayDataProvider($this->getDataProviderParams([
@@ -66,6 +72,8 @@ class ListAction extends Action
 
             $viewParams = array_merge($this->viewParams, $viewParams);
         }
+
+        $viewParams['filterModel'] = $this->filterModel;
 
         return $this->controller->render($this->view, $viewParams);
     }

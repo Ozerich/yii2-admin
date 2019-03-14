@@ -14,11 +14,14 @@ class ListPage extends Widget
 
     public $actions;
 
+    public $filterModel;
+
     public function run()
     {
         $this->dataProvider->sort = false;
 
         return $this->render('list', [
+            'filterModel' => $this->filterModel,
             'dataProvider' => $this->dataProvider,
             'headerButtons' => $this->headerButtons,
             'columns' => $this->columns,

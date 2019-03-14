@@ -1,6 +1,7 @@
 <?
 /**
  * @var \yii\data\ActiveDataProvider $dataProvider
+ * @var \yii\db\ActiveRecord $filterModel
  * @var array $headerButtons
  * @var array $columns
  * @var array $actions
@@ -89,6 +90,7 @@
     <div class="box-body">
         <?= \yii\grid\GridView::widget([
             'dataProvider' => $dataProvider,
+            'filterModel' => $filterModel,
             'layout' => '{items}{pager}',
             'columns' => $gridColumns
         ]); ?>
