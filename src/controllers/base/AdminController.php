@@ -31,8 +31,17 @@ class AdminController extends Controller
         ];
     }
 
+    public function redirect($url, $statusCode = 302, $force = false)
+    {
+        if (isset($_POST['only-save']) && !$force) {
+            return $this->goBack();
+        }
+
+        return parent::redirect($url, $statusCode);
+    }
+
     public function goBack($defaultUrl = null)
     {
-        return $this->redirect(\Yii::$app->request->getReferrer());
+        return $this->redirect(\Yii::$app->request->getReferrer(), 302, true);
     }
 }
