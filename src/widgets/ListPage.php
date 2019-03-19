@@ -16,6 +16,8 @@ class ListPage extends Widget
 
     public $filterModel;
 
+    public $idGetter;
+
     public function run()
     {
         $this->dataProvider->sort = false;
@@ -26,6 +28,7 @@ class ListPage extends Widget
             'headerButtons' => $this->headerButtons,
             'columns' => $this->columns,
             'actions' => $this->actions,
+            'idGetter' => $this->idGetter,
             'baseUrl' => '/admin/'.$this->view->context->id
         ]);
     }

@@ -11,17 +11,17 @@
 ?>
 <div class="box box-primary">
 
-    <div class="box-header">
-        <h3 class="box-title"></h3>
-        <div class="box-tools pull-left">
-            <? if ($headerButtons && is_array($headerButtons)) foreach ($headerButtons as $headerbutton): ?>
-                <?= \yii\helpers\Html::a('<i class="fa fa-' . $headerbutton['icon'] . '"></i> ' . $headerbutton['label'],
-                    [$headerbutton['action']],
-                    ['class' => 'btn btn-' . $headerbutton['additionalClass']]
-                ); ?>
-            <? endforeach; ?>
-        </div>
+  <div class="box-header">
+    <h3 class="box-title"></h3>
+    <div class="box-tools pull-left">
+        <? if ($headerButtons && is_array($headerButtons)) foreach ($headerButtons as $headerbutton): ?>
+            <?= \yii\helpers\Html::a('<i class="fa fa-' . $headerbutton['icon'] . '"></i> ' . $headerbutton['label'],
+                [$headerbutton['action']],
+                ['class' => 'btn btn-' . $headerbutton['additionalClass']]
+            ); ?>
+        <? endforeach; ?>
     </div>
+  </div>
 
     <?
 
@@ -65,12 +65,12 @@
                 }, $templateActions)),
                 'header' => 'Действия',
                 'buttonsVisible' => $buttonsVisible,
-                'urlCreator' => function ($action, $model, $key, $index) use ($fixActions, $baseUrl) {
+                'urlCreator' => function ($action, $model, $key, $index) use ($fixActions, $baseUrl, $idGetter) {
 
                     if (isset($fixActions[$action])) {
-                        $result = $baseUrl . '/' . $fixActions[$action] . '/' . $model->id;
+                        $result = $baseUrl . '/' . $fixActions[$action] . '/' . ($idGetter ? call_user_func($idGetter, $model) : $model->id);
                     } else {
-                        $result = $baseUrl . '/' . $action . '/' . $model->id;
+                        $result = $baseUrl . '/' . $action . '/' . ($idGetter ? call_user_func($idGetter, $model) : $model->id);
                     }
 
                     if ($action == 'up' || $action == 'down') {
@@ -87,12 +87,12 @@
     }
     ?>
 
-    <div class="box-body">
-        <?= \yii\grid\GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $filterModel,
-            'layout' => '{items}{pager}',
-            'columns' => $gridColumns
-        ]); ?>
-    </div>
+  <div class="box-body">
+      <?= \yii\grid\GridView::widget([
+          'dataProvider' => $dataProvider,
+          'filterModel' => $filterModel,
+          'layout' => '{items}{pager}',
+          'columns' => $gridColumns
+      ]); ?>
+  </div>
 </div>
