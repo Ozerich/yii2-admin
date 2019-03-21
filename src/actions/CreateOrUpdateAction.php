@@ -5,8 +5,11 @@ namespace ozerich\admin\actions;
 use ozerich\admin\Module;
 use yii\base\Action;
 use yii\db\ActiveRecord;
+use yii\web\MethodNotAllowedHttpException;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use yii\web\UploadedFile;
+use yii\widgets\ActiveForm;
 
 class CreateOrUpdateAction extends Action
 {
@@ -70,6 +73,10 @@ class CreateOrUpdateAction extends Action
 
     public function runWithParams($params)
     {
+        if ($this->view === null && \Yii::$app->request->isGet) {
+            throw new MethodNotAllowedHttpException();
+        }
+
         $model = $this->getModel($params);
 
         if (!$model) {
@@ -131,7 +138,11 @@ class CreateOrUpdateAction extends Action
                     }
                 }
             }
+        }
 
+        if ($this->view === null) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($formModel);
         }
 
         $viewParams = [
@@ -147,6 +158,7 @@ class CreateOrUpdateAction extends Action
                 $viewParams = array_merge($viewParams, call_user_func_array($this->viewParams, [$params]));
             }
         }
+
         return $this->controller->render($this->view, $viewParams);
     }
 }
