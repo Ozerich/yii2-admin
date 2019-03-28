@@ -7,6 +7,7 @@ use yii\base\Action;
 use yii\base\InvalidArgumentException;
 use yii\db\ActiveQuery;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class MoveAction extends Action
 {
@@ -87,6 +88,10 @@ class MoveAction extends Action
             ])->execute();
         }
 
+        if(Yii::$app->request->isAjax){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ['success' => true];
+        }
 
         return $this->controller->redirect(Yii::$app->request->getReferrer());
     }
