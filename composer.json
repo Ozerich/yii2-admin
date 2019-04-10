@@ -25,7 +25,8 @@
     "2amigos/yii2-tinymce-widget": "~1.1",
     "dmstr/yii2-adminlte-asset": "2.*"
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "ozerich\\admin\\": "src/"
