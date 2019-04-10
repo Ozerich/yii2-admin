@@ -27,6 +27,8 @@ class Module extends \yii\base\Module
 
     public $fileStorageComponent = 'media';
 
+    public $logoUrl = null;
+
     public function init()
     {
         parent::init();

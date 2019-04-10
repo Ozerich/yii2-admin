@@ -19,94 +19,97 @@ if ($module->isBoxedLayout) {
 if (Yii::$app->request->cookies->getValue('sidebar') === 'collapse') {
     $body_classes[] = 'sidebar-collapsed';
 }
+
+$logoUrl = $module->logoUrl ? $module->logoUrl : '/admin';
 ?>
 
 <?php $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?php echo Yii::$app->language ?>">
-    <head>
-        <meta charset="<?php echo Yii::$app->charset ?>" />
-        <?php echo Html::csrfMetaTags() ?>
-        <title><?= Html::encode(Yii::$app->name . ($this->title ? ' - ' . ($this->title[0] == '#' ? substr($this->title, 1) : $this->title) : '')) ?></title>
-        <?php $this->head() ?>
-    </head>
-    <body class="<?= implode(' ', $body_classes) ?>">
-    <div class="wrapper">
-        <header class="main-header">
+  <!DOCTYPE html>
+  <html lang="<?php echo Yii::$app->language ?>">
+  <head>
+    <meta charset="<?php echo Yii::$app->charset ?>" />
+      <?php echo Html::csrfMetaTags() ?>
+    <title><?= Html::encode(Yii::$app->name . ($this->title ? ' - ' . ($this->title[0] == '#' ? substr($this->title, 1) : $this->title) : '')) ?></title>
+      <?php $this->head() ?>
+  </head>
+  <body class="<?= implode(' ', $body_classes) ?>">
+  <div class="wrapper">
+    <header class="main-header">
 
-            <a href="/admin" class="logo">
-                <span class="logo-mini"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->shortName) ?></span>
-                <span class="logo-lg"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->fullName) ?></span>
-            </a>
+      <a href="<?= $logoUrl ?>" class="logo">
+        <span class="logo-mini"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->shortName) ?></span>
+        <span class="logo-lg"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->fullName) ?></span>
+      </a>
 
-            <nav class="navbar navbar-static-top">
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" onclick="toggleSidebar()">
-                </a>
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="hidden-xs"><?= $user->getDashboardName() ?></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="user-header">
-                                    <p>
-                                        <?= $user->getDashboardName() ?>
-                                    </p>
-                                </li>
-                                <li class="user-footer">
-                                    <div class="pull-right">
-                                        <a href="/admin/auth/logout" class="btn btn-default btn-flat">Exit</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <aside class="main-sidebar">
-            <section class="sidebar">)
-                <? echo \ozerich\admin\components\layout\SidebarNav::widget(); ?>
-            </section>
-        </aside>
-
-        <div class="content-wrapper">
-            <section class="content-header">
-                <?php if ($notice = Yii::$app->session->getFlash('notice_text')): ?>
-                    <div class="callout callout-<?= (($noticeClass = Yii::$app->session->getFlash('notice_level')) ? $noticeClass : 'default') ?>">
-                        <?= $notice ?>
-                    </div>
-                <?php endif; ?>
-                <?php if ($this->title[0] != '#'): ?>
-                    <h1><?= $this->title ?></h1>
-                <?php endif; ?>
-
-                <? if (isset($this->params['breadcrumbs']) && !empty($this->params['breadcrumbs'])): ?>
-                    <ol class="breadcrumb">
-                        <? foreach ($this->params['breadcrumbs'] as $breadcrumb): ?>
-                            <li><a href="/admin<?= $breadcrumb['link'] ?>"><?= $breadcrumb['label'] ?></a></li>
-                        <? endforeach; ?>
-
-                        <li class="active"><?= $this->title ?></li>
-                    </ol>
-                <? endif; ?>
-
-                <div class="page-buttons">
-                    <? if (isset($this->params['buttons'])): ?>
-                        <? foreach ($this->params['buttons'] as $button): ?>
-                            <a href="<?= $button['url'] ?>" class="btn btn-mini btn-success"><?= $button['label'] ?></a>
-                        <? endforeach; ?>
-                    <? endif; ?>
-                </div>
-            </section>
-            <section class="content">
-                <?= $content ?>
-            </section>
+      <nav class="navbar navbar-static-top">
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" onclick="toggleSidebar()">
+        </a>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="hidden-xs"><?= $user->getDashboardName() ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="user-header">
+                  <p>
+                      <?= $user->getDashboardName() ?>
+                  </p>
+                </li>
+                <li class="user-footer">
+                  <div class="pull-right">
+                    <a href="/admin/auth/logout" class="btn btn-default btn-flat">Exit</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
+      </nav>
+    </header>
+
+    <aside class="main-sidebar">
+      <section class="sidebar">)
+          <? echo \ozerich\admin\components\layout\SidebarNav::widget(); ?>
+      </section>
+    </aside>
+
+    <div class="content-wrapper">
+      <section class="content-header">
+          <?php if ($notice = Yii::$app->session->getFlash('notice_text')): ?>
+            <div
+                class="callout callout-<?= (($noticeClass = Yii::$app->session->getFlash('notice_level')) ? $noticeClass : 'default') ?>">
+                <?= $notice ?>
+            </div>
+          <?php endif; ?>
+          <?php if ($this->title[0] != '#'): ?>
+            <h1><?= $this->title ?></h1>
+          <?php endif; ?>
+
+          <? if (isset($this->params['breadcrumbs']) && !empty($this->params['breadcrumbs'])): ?>
+            <ol class="breadcrumb">
+                <? foreach ($this->params['breadcrumbs'] as $breadcrumb): ?>
+                  <li><a href="/admin<?= $breadcrumb['link'] ?>"><?= $breadcrumb['label'] ?></a></li>
+                <? endforeach; ?>
+
+              <li class="active"><?= $this->title ?></li>
+            </ol>
+          <? endif; ?>
+
+        <div class="page-buttons">
+            <? if (isset($this->params['buttons'])): ?>
+                <? foreach ($this->params['buttons'] as $button): ?>
+                <a href="<?= $button['url'] ?>" class="btn btn-mini btn-success"><?= $button['label'] ?></a>
+                <? endforeach; ?>
+            <? endif; ?>
+        </div>
+      </section>
+      <section class="content">
+          <?= $content ?>
+      </section>
     </div>
-    <?php $this->endBody() ?>
-    </body>
-    </html>
+  </div>
+  <?php $this->endBody() ?>
+  </body>
+  </html>
 <?php $this->endPage() ?>
