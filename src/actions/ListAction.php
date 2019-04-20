@@ -3,6 +3,7 @@
 namespace ozerich\admin\actions;
 
 use yii\base\Action;
+use yii\base\InvalidArgumentException;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
 
@@ -57,10 +58,16 @@ class ListAction extends Action
             $dataProvider = new ActiveDataProvider($this->getDataProviderParams([
                 'query' => $this->filterModel ? $this->filterModel->search($this->query) : $this->query
             ]));
-        } else {
+        } else if ($this->models) {
+            if (is_callable($this->models)) {
+                $this->models = call_user_func($this->models, $params);
+            }
+
             $dataProvider = new ArrayDataProvider($this->getDataProviderParams([
                 'allModels' => $this->models
             ]));
+        } else {
+            throw new InvalidArgumentException('query or models must be set');
         }
 
         $viewParams = ['dataProvider' => $dataProvider];

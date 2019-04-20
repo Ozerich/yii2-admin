@@ -49,7 +49,6 @@ class MoveAction extends Action
         if (!in_array($mode, array('up', 'down'))) {
             throw new InvalidArgumentException("Param `mode` must be `up` or `down`");
         }
-
         $model = $this->findModel($id);
 
         $table_name = $model->tableName();
@@ -61,18 +60,19 @@ class MoveAction extends Action
 
         if ($this->conditionAttribute) {
             $attributes = is_array($this->conditionAttribute) ? $this->conditionAttribute : [$this->conditionAttribute];
-            foreach ($attributes as $attr) {
+            foreach ($attributes as $ind => $attr) {
                 $value = $model->{$attr};
                 if ($value === null) {
                     $query->andWhere('`' . $attr . '` is null');
                 } else {
-                    $query->andWhere('`' . $attr . '` = :value', [':value' => $value]);
+                    $key = ':value_' . $ind;
+                    $query->andWhere('`' . $attr . '` = ' . $key, [$key => $value]);
                 }
             }
         }
 
         $result = $query->one();
-        
+
         if ($result) {
 
             $db = Yii::$app->getDb();
@@ -88,7 +88,7 @@ class MoveAction extends Action
             ])->execute();
         }
 
-        if(Yii::$app->request->isAjax){
+        if (Yii::$app->request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ['success' => true];
         }
