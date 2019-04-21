@@ -2,15 +2,21 @@
 /**
  * @var string $content
  * $var boolean $isCreate
+ * $var string $boxTitle
  */
 ?>
 <div class="box box-primary">
-    <div class="box-body">
-        <div class="row">
-            <?= $content ?>
-        </div>
+    <? if (!empty($boxTitle)): ?>
+      <div class="box-header with-border">
+        <h3 class="box-title"><?= $boxTitle ?></h3>
+      </div>
+    <? endif; ?>
+  <div class="box-body">
+    <div class="row">
+        <?= $content ?>
     </div>
-    <div class="box-footer">
-        <?= \yii\helpers\Html::submitButton($isCreate ? 'Создать' : 'Сохранить', ['class' => 'btn btn-primary']); ?>
-    </div>
+  </div>
+  <div class="box-footer">
+      <?= \yii\helpers\Html::submitButton($isCreate ? 'Создать' : 'Сохранить', ['class' => 'btn btn-primary']); ?>
+  </div>
 </div>

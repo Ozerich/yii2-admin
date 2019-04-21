@@ -8,6 +8,8 @@ class FormPage extends Widget
 {
     public $isCreate;
 
+    public $boxTitle;
+
     public function init()
     {
         parent::init();
@@ -21,6 +23,7 @@ class FormPage extends Widget
         $content = ob_get_clean();
 
         echo $this->render('form', [
+            'boxTitle' => $this->boxTitle,
             'content' => $content,
             'isCreate' => $this->isCreate
         ]);
