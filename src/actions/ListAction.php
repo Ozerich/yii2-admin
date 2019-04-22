@@ -58,7 +58,7 @@ class ListAction extends Action
             $dataProvider = new ActiveDataProvider($this->getDataProviderParams([
                 'query' => $this->filterModel ? $this->filterModel->search($this->query) : $this->query
             ]));
-        } else if ($this->models) {
+        } else if ($this->models !== null) {
             if (is_callable($this->models)) {
                 $this->models = call_user_func($this->models, $params);
             }
