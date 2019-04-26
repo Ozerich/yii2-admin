@@ -55,6 +55,7 @@ class CreateOrUpdateAction extends Action
 
         $className = $this->modelClass;
 
+
         return $className::findOne($params['id']);
     }
 
@@ -79,6 +80,7 @@ class CreateOrUpdateAction extends Action
 
         $model = $this->getModel($params);
 
+
         if (!$model) {
             throw new NotFoundHttpException();
         }
@@ -87,8 +89,12 @@ class CreateOrUpdateAction extends Action
             $formModel = new $this->formClass;
 
             if (!$this->isCreate) {
-                $convertor = new $this->formConvertor;
-                $formModel = $this->modelClass ? $convertor->loadFormFromModel($model) : $convertor->loadForm();
+                if ($this->formConvertor) {
+                    $convertor = new $this->formConvertor;
+                    $formModel = $this->modelClass ? $convertor->loadFormFromModel($model) : $convertor->loadForm();
+                } else {
+                    $formModel = $model;
+                }
             }
         } else {
             $formModel = $model;
@@ -125,9 +131,13 @@ class CreateOrUpdateAction extends Action
 
             if ($formModel->hasErrors() == false) {
                 if ($this->formClass) {
-                    $convertor = new $this->formConvertor;
+                    if ($this->formConvertor) {
+                        $convertor = new $this->formConvertor;
 
-                    $success = $this->modelClass ? $convertor->saveModelFromForm($model, $formModel) : $convertor->saveModelFromForm($formModel);
+                        $success = $this->modelClass ? $convertor->saveModelFromForm($model, $formModel) : $convertor->saveModelFromForm($formModel);
+                    } else {
+                        $success = $formModel->save();
+                    }
 
                     if ($success) {
                         return $this->controller->redirect($this->getRedirectUrl($model));
