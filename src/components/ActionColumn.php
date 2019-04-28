@@ -18,6 +18,8 @@ class ActionColumn extends \yii\grid\ActionColumn
 
     public $headerOptions = ['style' => 'min-width: 80px;'];
 
+    public $buttonOptions = ['style' => 'margin-left: 8px'];
+
     protected function initDefaultButtons()
     {
         if (!isset($this->buttons['view'])) {
@@ -25,7 +27,8 @@ class ActionColumn extends \yii\grid\ActionColumn
                 return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
                     'title' => Yii::t('yii', 'View'),
                     'data-pjax' => '0',
-                    'target' => strpos($url, 'http://') !== false ? '_blank' : ''
+                    'target' => strpos($url, 'http://') !== false ? '_blank' : '',
+                    'class' => 'grid-icon'
                 ]);
             };
         }
@@ -35,7 +38,8 @@ class ActionColumn extends \yii\grid\ActionColumn
                 return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
                     'title' => 'Edit',
                     'data-pjax' => '0',
-                    'target' => strpos($url, 'http://') !== false ? '_blank' : ''
+                    'target' => strpos($url, 'http://') !== false ? '_blank' : '',
+                    'class' => 'grid-icon'
                 ]);
             };
         }
@@ -46,7 +50,8 @@ class ActionColumn extends \yii\grid\ActionColumn
                     'data-confirm' => 'Are you sure?',
                     'data-method' => 'post',
                     'data-pjax' => '0',
-                    'target' => strpos($url, 'http://') !== false ? '_blank' : ''
+                    'target' => strpos($url, 'http://') !== false ? '_blank' : '',
+                    'class' => 'grid-icon'
                 ]);
             };
         }
@@ -56,7 +61,8 @@ class ActionColumn extends \yii\grid\ActionColumn
                 return Html::a('<span class="glyphicon glyphicon-arrow-up"></span>', $url, [
                     'title' => 'Move up',
                     'data-pjax' => '0',
-                    'target' => strpos($url, 'http://') !== false ? '_blank' : ''
+                    'target' => strpos($url, 'http://') !== false ? '_blank' : '',
+                    'class' => 'grid-icon'
                 ]);
             };
         }
@@ -66,7 +72,19 @@ class ActionColumn extends \yii\grid\ActionColumn
                 return Html::a('<span class="glyphicon glyphicon-arrow-down"></span>', $url, [
                     'title' => 'Move down',
                     'data-pjax' => '0',
-                    'target' => strpos($url, 'http://') ? '_blank' : ''
+                    'target' => strpos($url, 'http://') ? '_blank' : '',
+                    'style' => 'display: inline-block; margin-left: 8px;'
+                ]);
+            };
+        }
+
+        if (!isset($this->buttons['copy'])) {
+            $this->buttons['copy'] = function ($url, $model) {
+                return Html::a('<i class="fa fa-fw fa-copy"></i>', $url, [
+                    'title' => 'Copy',
+                    'data-pjax' => '0',
+                    'target' => strpos($url, 'http://') ? '_blank' : '',
+                    'class' => 'grid-icon'
                 ]);
             };
         }

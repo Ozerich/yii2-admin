@@ -14,3 +14,11 @@
     max-height: 150px;
     max-width: 150px;
 }
+
+.grid-view .grid-icon {
+    margin-left: 10px;
+}
+
+.grid-view .grid-icon:first-child {
+    margin-left: 0;
+}
