@@ -82,6 +82,7 @@ class ListAction extends Action
 
         $viewParams['filterModel'] = $this->filterModel;
 
-        return $this->controller->render($this->view, $viewParams);
+        $view = is_callable($this->view) ? call_user_func($this->view, $params) : $this->view;
+        return $this->controller->render($view, $viewParams);
     }
 }
