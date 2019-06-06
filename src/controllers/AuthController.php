@@ -13,6 +13,8 @@ class AuthController extends Controller
 {
     public $layout = 'guest';
 
+    public $enableCsrfValidation = false;
+
     public function actionIndex()
     {
         $this->setViewPath('@vendor/ozerich/yii2-admin/src/views/auth');
