@@ -35,6 +35,8 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
+        $this->registerTranslations();
+
         $this->setLayoutPath($this->layoutPath);
 
         $handler = new ErrorHandler();
@@ -65,6 +67,16 @@ class Module extends \yii\base\Module
         }
 
         \Yii::$app->setComponents($components);
+    }
+
+
+    private function registerTranslations()
+    {
+        \Yii::$app->i18n->translations['admin'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'en-US',
+            'basePath' => '@vendor/ozerich/yii2-admin/src/messages'
+        ];
     }
 
     /**

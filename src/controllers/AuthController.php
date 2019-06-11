@@ -17,6 +17,8 @@ class AuthController extends Controller
 
     public function actionIndex()
     {
+        $this->registerTranslations();
+
         $this->setViewPath('@vendor/ozerich/yii2-admin/src/views/auth');
 
         $form = new LoginForm();
@@ -49,6 +51,16 @@ class AuthController extends Controller
             'model' => $form
         ]);
     }
+
+    private function registerTranslations()
+    {
+        \Yii::$app->i18n->translations['admin'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'en-US',
+            'basePath' => '@vendor/ozerich/yii2-admin/src/messages'
+        ];
+    }
+
 
     public function actionLogout()
     {

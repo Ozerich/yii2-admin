@@ -63,7 +63,7 @@
                 'template' => implode('', array_map(function ($item) {
                     return '{' . $item . '}';
                 }, $templateActions)),
-                'header' => 'Действия',
+                'header' => \Yii::t('admin', 'Actions'),
                 'buttonsVisible' => $buttonsVisible,
                 'urlCreator' => function ($action, $model, $key, $index) use ($fixActions, $baseUrl, $idGetter) {
 

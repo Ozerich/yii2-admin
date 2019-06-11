@@ -17,6 +17,8 @@
     </div>
   </div>
   <div class="box-footer">
-      <?= \yii\helpers\Html::submitButton($isCreate ? 'Создать' : 'Сохранить', ['class' => 'btn btn-primary']); ?>
+      <?= \yii\helpers\Html::submitButton($isCreate ? \Yii::t('admin', 'Create') : \Yii::t('admin', 'Save'), [
+          'class' => 'btn btn-primary'
+      ]); ?>
   </div>
 </div>

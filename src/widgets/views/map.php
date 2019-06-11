@@ -12,7 +12,7 @@
       crossorigin="" />
 
 <div class="map_widget">
-    <div id="map" style="height: 500px; width: 100%;"></div>
+  <div id="map" style="height: 500px; width: 100%;"></div>
     <?= \yii\helpers\Html::activeHiddenInput($model, $attribute); ?>
 </div>
 
