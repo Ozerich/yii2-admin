@@ -4,8 +4,6 @@ namespace ozerich\admin\widgets;
 
 class TinyMce extends \dosamigos\tinymce\TinyMce
 {
-    public $language = 'ru';
-
     public $enabledImagesUpload = false;
 
     public $imagesUploadUrl = '/admin/default/upload-tinymce';
@@ -29,6 +27,8 @@ class TinyMce extends \dosamigos\tinymce\TinyMce
             $this->clientOptions['images_upload_url'] = $this->imagesUploadUrl;
             $this->clientOptions['toolbar'] .= ' | image';
         }
+
+        $this->language = \Yii::$app->language;
 
         parent::init();
     }
