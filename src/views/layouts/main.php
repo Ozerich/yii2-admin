@@ -58,7 +58,7 @@ $logoUrl = $module->logoUrl ? $module->logoUrl : '/admin';
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                    <a href="/admin/auth/logout" class="btn btn-default btn-flat"><?= \Yii::t('admin', 'Exit') ?></a>
+                    <a href="/admin/auth/logout" class="btn btn-default btn-flat"><?= \Yii::t('admin', 'Log out') ?></a>
                   </div>
                 </li>
               </ul>

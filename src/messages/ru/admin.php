@@ -7,5 +7,5 @@ return [
     'Login' => 'Войти',
     'Password' => 'Пароль',
     'Authenticate' => 'Войти',
-    'Exit' => 'Выйти'
+    'Log out' => 'Выйти'
 ];
