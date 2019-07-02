@@ -3,8 +3,8 @@
 namespace ozerich\admin\controllers\base;
 
 use ozerich\admin\interfaces\IAdminUser;
-use yii\web\Controller;
 use yii\filters\AccessControl;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 class AdminController extends Controller
@@ -37,6 +37,11 @@ class AdminController extends Controller
     {
         /** @var IAdminUser $user */
         $user = \Yii::$app->user->getIdentity();
+
+        if (!$user) {
+            $this->redirect('/admin/auth');
+            return false;
+        }
 
         if ($user->checkAdminAccess() == false) {
             throw new NotFoundHttpException();

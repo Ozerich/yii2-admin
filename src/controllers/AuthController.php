@@ -17,6 +17,13 @@ class AuthController extends Controller
 
     public function actionIndex()
     {
+        if (\Yii::$app->user->isGuest == false) {
+            $user = \Yii::$app->user->getIdentity();
+            if ($user->checkAdminAccess()) {
+                $this->redirect('/admin');
+            }
+        }
+
         $this->registerTranslations();
 
         $this->setViewPath('@vendor/ozerich/yii2-admin/src/views/auth');
