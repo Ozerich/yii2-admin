@@ -37,8 +37,13 @@ $logoUrl = $module->logoUrl ? $module->logoUrl : '/admin';
     <header class="main-header">
 
       <a href="<?= $logoUrl ?>" class="logo">
-        <span class="logo-mini"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->shortName) ?></span>
-        <span class="logo-lg"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->fullName) ?></span>
+        <? if ($module->logoSrc): ?>
+          <div class="logo-lg">
+            <img src="<?= $module->logoSrc ?>" style="max-width: 200px; max-height: 50px"/>
+          </div>
+        <? else: ?>
+          <span class="logo-lg"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->fullName) ?></span>
+        <? endif; ?>
       </a>
 
       <nav class="navbar navbar-static-top">
