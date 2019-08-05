@@ -44,6 +44,7 @@ $logoUrl = $module->logoUrl ? $module->logoUrl : '/admin';
         <? else: ?>
           <span class="logo-lg"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->fullName) ?></span>
         <? endif; ?>
+        <span class="logo-sm"><?=$module->shortName?></span>
       </a>
 
       <nav class="navbar navbar-static-top">
