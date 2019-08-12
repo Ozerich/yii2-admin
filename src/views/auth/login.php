@@ -35,11 +35,11 @@ use yii\widgets\ActiveForm;
 <div class="login-box">
   <div class="login-inner">
       <? if (!empty($module->loginLogoSrc)): ?>
-        <div class="login-logo" style="margin-bottom: 0">
+        <div class="login-logo" style="margin-bottom: 20px;">
           <img src="<?= $module->loginLogoSrc ?>">
         </div>
       <? endif; ?>
-    <div class="login-box-body">
+    <div class="login-box-body" style="padding: 25px;">
 
         <?php $form = ActiveForm::begin([
             'enableAjaxValidation' => true,

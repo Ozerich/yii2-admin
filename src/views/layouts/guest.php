@@ -14,11 +14,11 @@ use yii\helpers\Html;
   <head>
     <meta charset="<?php echo Yii::$app->charset ?>" />
       <?php echo Html::csrfMetaTags() ?>
-    <title><?= Html::encode(Yii::$app->name) ?></title>
+    <title><?php echo Html::encode($this->title) ?></title>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       <?php $this->head() ?>
   </head>
-  <body class="skin-blue">
+  <body class="skin-blue" style="background: #f1f1f1">
   <?php echo $content; ?>
   <?php $this->endBody() ?>
   </body>
