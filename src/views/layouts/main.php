@@ -30,6 +30,7 @@ $logoUrl = $module->logoUrl ? $module->logoUrl : '/admin';
     <meta charset="<?php echo Yii::$app->charset ?>" />
       <?php echo Html::csrfMetaTags() ?>
     <title><?= Html::encode(Yii::$app->name . ($this->title ? ' - ' . ($this->title[0] == '#' ? substr($this->title, 1) : $this->title) : '')) ?></title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       <?php $this->head() ?>
   </head>
   <body class="<?= implode(' ', $body_classes) ?>">
@@ -37,14 +38,14 @@ $logoUrl = $module->logoUrl ? $module->logoUrl : '/admin';
     <header class="main-header">
 
       <a href="<?= $logoUrl ?>" class="logo">
-        <? if ($module->logoSrc): ?>
-          <div class="logo-lg">
-            <img src="<?= $module->logoSrc ?>" style="max-width: 200px; max-height: 50px"/>
-          </div>
-        <? else: ?>
-          <span class="logo-lg"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->fullName) ?></span>
-        <? endif; ?>
-        <span class="logo-sm"><?=$module->shortName?></span>
+          <? if ($module->logoSrc): ?>
+            <div class="logo-lg">
+              <img src="<?= $module->logoSrc ?>" style="max-width: 200px; max-height: 50px" />
+            </div>
+          <? else: ?>
+            <span class="logo-lg"><?= preg_replace('#\*(.+?)\*#si', '<b>$1</b>', $module->fullName) ?></span>
+          <? endif; ?>
+        <span class="logo-sm"><?= $module->shortName ?></span>
       </a>
 
       <nav class="navbar navbar-static-top">
@@ -75,7 +76,7 @@ $logoUrl = $module->logoUrl ? $module->logoUrl : '/admin';
     </header>
 
     <aside class="main-sidebar">
-      <section class="sidebar">)
+      <section class="sidebar">
           <? echo \ozerich\admin\components\layout\SidebarNav::widget(); ?>
       </section>
     </aside>

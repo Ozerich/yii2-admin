@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
@@ -8,17 +9,18 @@ use yii\helpers\Html;
 ?>
 
 <?php $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?php echo  Yii::$app->language ?>">
-    <head>
-        <meta charset="<?php echo  Yii::$app->charset ?>"/>
-        <?php echo  Html::csrfMetaTags() ?>
-        <title><?php echo  Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
-    </head>
-    <body class="skin-blue">
-    <?php echo  $content; ?>
-    <?php $this->endBody() ?>
-    </body>
-    </html>
+  <!DOCTYPE html>
+  <html lang="<?php echo Yii::$app->language ?>">
+  <head>
+    <meta charset="<?php echo Yii::$app->charset ?>" />
+      <?php echo Html::csrfMetaTags() ?>
+    <title><?= Html::encode(Yii::$app->name) ?></title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+      <?php $this->head() ?>
+  </head>
+  <body class="skin-blue">
+  <?php echo $content; ?>
+  <?php $this->endBody() ?>
+  </body>
+  </html>
 <?php $this->endPage() ?>

@@ -29,6 +29,8 @@ class Module extends \yii\base\Module
 
     public $logoUrl = null;
 
+    public $loginLogoSrc = null;
+
     public $logoSrc = null;
 
     public $loginDuration = 0;
