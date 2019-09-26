@@ -106,7 +106,8 @@ $logoUrl = $module->logoUrl ? $module->logoUrl : '/admin';
         <div class="page-buttons">
             <? if (isset($this->params['buttons'])): ?>
                 <? foreach ($this->params['buttons'] as $button): ?>
-                <a href="<?= $button['url'] ?>" class="btn btn-mini btn-success"><?= $button['label'] ?></a>
+                <a href="<?= $button['url'] ?>"
+                   class="btn btn-mini btn-success" <?= isset($button['target']) ? 'target="' . $button['target'] . '"' : '' ?>><?= $button['label'] ?></a>
                 <? endforeach; ?>
             <? endif; ?>
         </div>
