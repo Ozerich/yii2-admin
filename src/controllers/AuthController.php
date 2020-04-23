@@ -46,7 +46,7 @@ class AuthController extends Controller
                 $model = \Yii::createObject($userClass);
 
                 $user = $model->checkAdminLogin($form->login, $form->password);
-                if ($user && $model->checkAdminAccess()) {
+                if ($user && $user->checkAdminAccess()) {
                     \Yii::$app->user->login($user, $module->loginDuration);
                     return $this->redirect('/admin');
                 }
