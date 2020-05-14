@@ -10,6 +10,8 @@ class FormPage extends Widget
 
     public $boxTitle;
 
+    public $backUrl;
+
     public function init()
     {
         parent::init();
@@ -25,7 +27,8 @@ class FormPage extends Widget
         echo $this->render('form', [
             'boxTitle' => $this->boxTitle,
             'content' => $content,
-            'isCreate' => $this->isCreate
+            'isCreate' => $this->isCreate,
+            'backUrl' => $this->backUrl
         ]);
     }
 }
